@@ -3,10 +3,10 @@ import { Key } from "react";
 
 interface Book {
   id: Key | null | undefined;
-  Title: string;
-  Author: string;
-  Genre: string;
-  PublicationYear: string;
+  title: string;
+  author: string;
+  genre: string;
+  publicationYear: string;
 }
 
 interface BookDetailsProps {
@@ -22,7 +22,7 @@ const BookDetails: React.FC<BookDetailsProps> = ({ book }) => {
           <p className="text-sm font-light text-left">{genre}</p>
           <p className="text-sm font-light text-right">{publicationYear}</p>
         </div>
-        <h3 className="text-lg font-bold text-gray-800 text-center">{title}</h3>
+        <h3 className="text-lg font-bold text-cyan-700 text-center">{title}</h3>
         <p className="text-sm font-normal text-center -mt-2 ">{author}</p>
         {/* <div className="card-actions justify-end">
           <button className="btn btn-primary">Buy Now</button>

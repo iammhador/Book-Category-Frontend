@@ -13,8 +13,10 @@ export default function RecentBooks() {
 
   return (
     <div className="bg-gray-800 py-10 px-10">
-      <h1>Last added 10 Books</h1>
-      <div className="grid grid-cols-3 items-center gap-4">
+      <h2 className="text-white text-center text-3xl font-bold uppercase mb-10">
+        Latest Books
+      </h2>
+      <div className="grid grid-cols-3 items-center justify-items-center gap-8">
         {data?.map((book: { id: Key | null | undefined }, index: number) => (
           <BookDetails key={index} book={book} />
         ))}
