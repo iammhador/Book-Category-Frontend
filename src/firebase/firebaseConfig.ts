@@ -1,17 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { initializeApp } from "firebase/app";
-import { FirebaseOptions } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
-const firebaseConfig: FirebaseOptions = {
-  apiKey: process.env.FIREBASE_apiKey,
-  authDomain: process.env.FIREBASE_authDomain,
-  projectId: process.env.FIREBASE_projectId,
-  storageBucket: process.env.FIREBASE_storageBucket,
-  messagingSenderId: process.env.FIREBASE_messagingSenderId,
-  appId: process.env.FIREBASE_appId,
+const firebaseConfig = {
+  apiKey: "AIzaSyAiZeKdaGlpBat_jChDWVn_eLS1U3ZXVss",
+  authDomain: "bestreaders.firebaseapp.com",
+  projectId: "bestreaders",
+  storageBucket: "bestreaders.appspot.com",
+  messagingSenderId: "685262643279",
+  appId: "1:685262643279:web:5794441d4a517ea7304a3a",
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
-const app: any = initializeApp(firebaseConfig);
-export default app;
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
