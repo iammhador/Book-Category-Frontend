@@ -1,25 +1,50 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useLoaderData } from "react-router-dom";
+import {
+  useGetCommentsQuery,
+  usePostCommentsMutation,
+} from "../redux/features/books/booksApi";
+import { useAppSelector } from "../redux/hooks";
+import SingleComment from "./SingleComment";
+import { Key } from "react";
 
 export default function SingleBookDetails() {
   interface IBook {
+    _id: string;
     author: string;
     title: string;
     genre: string;
     publicationYear: string;
   }
 
-  interface IComment {
-    content: string;
-  }
+  const [postComment] = usePostCommentsMutation();
 
-  const data = useLoaderData();
-  const { author, title, genre, publicationYear } = data as IBook;
+  const { user } = useAppSelector((state) => state.user);
+
+  const bookData = useLoaderData();
+
+  const { author, title, genre, publicationYear, _id } = bookData as IBook;
+
+  const { data: commentData } = useGetCommentsQuery(_id, {
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 10000,
+  });
 
   const handleComment = (e: { preventDefault: () => void; target: any }) => {
     e.preventDefault();
 
-    const comment = e.target.comment.value as IComment;
-    console.log(comment);
+    const comment = e.target.comment.value;
+    const option = {
+      data: {
+        email: user.email,
+        comment,
+        id: _id,
+      },
+    };
+    postComment(option);
   };
 
   return (
@@ -57,11 +82,18 @@ export default function SingleBookDetails() {
           </div>
         </form>
       </div>
-
-      <div className="bg-white w-4/5 mt-28 mx-auto py-5 px-5 rounded-lg shadow-xl ">
-        <h2 className="">Name</h2>
-        <h2 className="">Comment</h2>
-      </div>
+      {user?.email && (
+        <div className="mt-20 py-10 bg-white rounded-lg">
+          {commentData &&
+            commentData.map(
+              (comment: {
+                _id: Key | null | undefined;
+                comment: string;
+                timestamp: string;
+              }) => <SingleComment key={comment._id} data={comment} />
+            )}
+        </div>
+      )}
     </div>
   );
 }

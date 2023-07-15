@@ -2,13 +2,14 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks";
 import { setUser, userLogin } from "../../redux/features/users/usersSlice";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
 
 export default function Login() {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const handleLogin = (e: { preventDefault: () => void; target: any }) => {
     e.preventDefault();
@@ -16,6 +17,8 @@ export default function Login() {
     const email = form.email.value;
     const password = form.password.value;
     dispatch(userLogin({ email, password }));
+    form.reset();
+    navigate("/");
   };
 
   onAuthStateChanged(auth, (user) => {

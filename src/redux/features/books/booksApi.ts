@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { api } from "../../api/apiSlice";
 
@@ -9,8 +11,42 @@ const booksApi = api.injectEndpoints({
     recentAddedBooks: builder.query({
       query: () => "/recent-books",
     }),
+    getComments: builder.query({
+      query: (id) => `/comments/${id}`,
+    }),
     getSingleBook: builder.query({
       query: (id) => `/singleBook/${id}`,
+    }),
+    getEmailMatchedBooks: builder.query({
+      query: (email) => `/matched-books/${email}`,
+    }),
+    createBook: builder.mutation({
+      query: ({ data }) => ({
+        url: "/add-book",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    postComments: builder.mutation({
+      query: ({ data }) => ({
+        url: "/create-comment",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    updateMatchedBook: builder.mutation({
+      query: (data) => ({
+        url: `/update-book/${data.id}`, // Assuming you want to include the email as a route parameter
+        method: "PATCH",
+        body: data,
+      }),
+    }),
+    deleteMatchedBook: builder.mutation({
+      query: (data) => ({
+        url: `/delete-book/${data.id}`, // Assuming you want to include the email as a route parameter
+        method: "DELETE",
+        body: data,
+      }),
     }),
   }),
 });
@@ -18,5 +54,9 @@ const booksApi = api.injectEndpoints({
 export const {
   useGetBooksQuery,
   useRecentAddedBooksQuery,
+  useGetCommentsQuery,
   useGetSingleBookQuery,
+  useGetEmailMatchedBooksQuery,
+  useCreateBookMutation,
+  usePostCommentsMutation,
 } = booksApi;

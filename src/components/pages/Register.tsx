@@ -2,12 +2,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createUser } from "../../redux/features/users/usersSlice";
 import { useAppDispatch } from "../../redux/hooks";
 
 export default function Register() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleRegister = (e: { preventDefault: () => void; target: any }) => {
     e.preventDefault();
@@ -15,6 +16,8 @@ export default function Register() {
     const email = form.email.value;
     const password = form.password.value;
     dispatch(createUser({ email, password }));
+    form.reset();
+    navigate("/");
   };
   return (
     <div className="min-h-screen flex flex-col justify-center items-center py-10  bg-gray-800">

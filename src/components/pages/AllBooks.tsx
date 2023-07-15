@@ -4,23 +4,27 @@ import { Key } from "react";
 import { useGetBooksQuery } from "../../redux/features/books/booksApi";
 import AllBookDetails from "../AllBookDetails";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../../redux/hooks";
 
 export default function AllBooks() {
   const { data } = useGetBooksQuery(undefined, {
     refetchOnMountOrArgChange: true,
     pollingInterval: 10000,
   });
-  console.log(data);
+
+  const { user } = useAppSelector((state) => state.user);
 
   return (
     <div className="grid grid-cols-4">
       <div className="col-span-1 bg-gray-800 py-10 px-10">
-        <Link
-          to="/add-new-books"
-          className="text-gray-800 py-4 px-5 bg-white uppercase font-bold text-base  rounded-lg hover:bg-red-500 hover:text-white transition duration-300 ease-in-out justify-center items-center flex"
-        >
-          Add new books
-        </Link>
+        {user.email && (
+          <Link
+            to="/add-new-books"
+            className="text-gray-800 py-4 px-5 bg-white uppercase font-bold text-base  rounded-lg hover:bg-red-500 hover:text-white transition duration-300 ease-in-out justify-center items-center flex"
+          >
+            Add new books
+          </Link>
+        )}
       </div>
       <div className="col-span-3">
         <div className="bg-white py-10 px-10">
