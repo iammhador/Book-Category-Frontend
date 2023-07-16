@@ -32,8 +32,8 @@ export default function YourBookDetails({ book }) {
           {title}
         </h3>
         <p className="text-sm font-normal text-center -mt-2 ">{author}</p>
-        <div className="flex justify-between mt-3">
-          <div className="text-2xl font-bold text-orange-600">
+        <div className="flex justify-between mt-3 text-white" data-tip="Edit">
+          <div className="tooltip text-2xl font-bold text-orange-600">
             <Link to={`/edit-your-book/${_id}`}>
               <BiSolidMessageSquareEdit />
             </Link>
