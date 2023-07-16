@@ -5,6 +5,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { createUser } from "../../redux/features/users/usersSlice";
 import { useAppDispatch } from "../../redux/hooks";
+import { toast } from "react-hot-toast";
 
 export default function Register() {
   const dispatch = useAppDispatch();
@@ -16,6 +17,7 @@ export default function Register() {
     const email = form.email.value;
     const password = form.password.value;
     dispatch(createUser({ email, password }));
+    toast.success("User register successfully");
     form.reset();
     navigate("/");
   };

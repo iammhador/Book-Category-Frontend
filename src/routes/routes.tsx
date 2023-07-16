@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
+import EditYourBook from "../components/EditYourBook";
 import SingleBookDetails from "../components/SingleBookDetails";
 import AddNewBooks from "../components/pages/AddNewBooks";
 import AllBooks from "../components/pages/AllBooks";
 import Home from "../components/pages/Home";
 import Login from "../components/pages/Login";
 import Register from "../components/pages/Register";
+import YourBooks from "../components/pages/YourBooks";
 import MainLayout from "../library/MainLayout";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -24,7 +26,15 @@ const router = createBrowserRouter([
           return fetch(`http://localhost:5000/singleBook/${params.id}`);
         },
       },
+      {
+        path: "/edit-your-book/:id",
+        element: <EditYourBook />,
+        loader: async ({ params }) => {
+          return fetch(`http://localhost:5000/singleBook/${params.id}`);
+        },
+      },
       { path: "/add-new-books", element: <AddNewBooks /> },
+      { path: "/your-added-books", element: <YourBooks /> },
       { path: "/register", element: <Register /> },
       { path: "/login", element: <Login /> },
     ],

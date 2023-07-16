@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Key } from "react";
@@ -18,12 +19,20 @@ export default function AllBooks() {
     <div className="grid grid-cols-4">
       <div className="col-span-1 bg-gray-800 py-10 px-10">
         {user.email && (
-          <Link
-            to="/add-new-books"
-            className="text-gray-800 py-4 px-5 bg-white uppercase font-bold text-base  rounded-lg hover:bg-red-500 hover:text-white transition duration-300 ease-in-out justify-center items-center flex"
-          >
-            Add new books
-          </Link>
+          <div>
+            <Link
+              to="/add-new-books"
+              className="text-gray-800 py-4 px-5 bg-white uppercase font-bold text-base  rounded-lg hover:bg-red-500 hover:text-white transition duration-300 ease-in-out justify-center items-center flex mb-5"
+            >
+              Add new books
+            </Link>
+            <Link
+              to="/your-added-books"
+              className="text-gray-800 py-4 px-5 bg-white uppercase font-bold text-base  rounded-lg hover:bg-red-500 hover:text-white transition duration-300 ease-in-out justify-center items-center flex"
+            >
+              Your added books
+            </Link>
+          </div>
         )}
       </div>
       <div className="col-span-3">

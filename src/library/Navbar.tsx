@@ -5,10 +5,12 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { setLoading, setUser } from "../redux/features/users/usersSlice";
 import { auth } from "../firebase/firebaseConfig";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useGetEmailMatchedBooksQuery } from "../redux/features/books/booksApi";
+import { toast } from "react-hot-toast";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.user);
 
@@ -28,6 +30,8 @@ export default function Navbar() {
     signOut(auth).then(() => {
       dispatch(setUser(null));
     });
+    toast.success("User logout successfully");
+    navigate("/");
   };
 
   return (

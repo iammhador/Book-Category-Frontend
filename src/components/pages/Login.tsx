@@ -7,6 +7,7 @@ import { useAppDispatch } from "../../redux/hooks";
 import { setUser, userLogin } from "../../redux/features/users/usersSlice";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
+import { toast } from "react-hot-toast";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ export default function Login() {
     const email = form.email.value;
     const password = form.password.value;
     dispatch(userLogin({ email, password }));
+    toast.success("User logged successfully");
     form.reset();
     navigate("/");
   };

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
@@ -35,17 +36,16 @@ const booksApi = api.injectEndpoints({
       }),
     }),
     updateMatchedBook: builder.mutation({
-      query: (data) => ({
-        url: `/update-book/${data.id}`, // Assuming you want to include the email as a route parameter
+      query: ({ _id, ...data }) => ({
+        url: `/update-book/${_id}`, // Assuming you want to include the email as a route parameter
         method: "PATCH",
         body: data,
       }),
     }),
     deleteMatchedBook: builder.mutation({
-      query: (data) => ({
-        url: `/delete-book/${data.id}`, // Assuming you want to include the email as a route parameter
+      query: (id) => ({
+        url: `/delete-book/${id}`, // Assuming you want to include the email as a route parameter
         method: "DELETE",
-        body: data,
       }),
     }),
   }),
@@ -59,4 +59,6 @@ export const {
   useGetEmailMatchedBooksQuery,
   useCreateBookMutation,
   usePostCommentsMutation,
+  useUpdateMatchedBookMutation,
+  useDeleteMatchedBookMutation,
 } = booksApi;
