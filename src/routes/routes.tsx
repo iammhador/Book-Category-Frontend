@@ -8,7 +8,10 @@ import Login from "../components/pages/Login";
 import Register from "../components/pages/Register";
 import YourBooks from "../components/pages/YourBooks";
 import MainLayout from "../library/MainLayout";
+import Wishlist from "../components/pages/Wishlist";
 import { createBrowserRouter } from "react-router-dom";
+import Reading from "../components/pages/Reading";
+import Finished from "../components/pages/Finished";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +22,9 @@ const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/home", element: <Home /> },
       { path: "/all-books", element: <AllBooks /> },
+      { path: "/wishlist", element: <Wishlist /> },
+      { path: "/reading", element: <Reading /> },
+      { path: "/finished", element: <Finished /> },
       {
         path: "/singleBook/:id",
         element: <SingleBookDetails />,

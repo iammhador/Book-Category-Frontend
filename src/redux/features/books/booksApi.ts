@@ -19,6 +19,15 @@ const booksApi = api.injectEndpoints({
     getEmailMatchedBooks: builder.query({
       query: (email) => `/matched-books/${email}`,
     }),
+    getWishlist: builder.query({
+      query: (email) => `/wishlist/${email}`,
+    }),
+    getReading: builder.query({
+      query: (email) => `/reading/${email}`,
+    }),
+    getFinished: builder.query({
+      query: (email) => `/finished/${email}`,
+    }),
     createBook: builder.mutation({
       query: ({ data }) => ({
         url: "/add-book",
@@ -83,6 +92,9 @@ export const {
   useGetCommentsQuery,
   useGetSingleBookQuery,
   useGetEmailMatchedBooksQuery,
+  useGetWishlistQuery,
+  useGetReadingQuery,
+  useGetFinishedQuery,
   useCreateBookMutation,
   usePostCommentsMutation,
   usePostListMutation,

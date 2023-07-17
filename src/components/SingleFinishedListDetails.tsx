@@ -1,22 +1,30 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
-import React from "react";
-import { Key } from "react";
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+
 import { Link } from "react-router-dom";
+import { useGetSingleBookQuery } from "../redux/features/books/booksApi";
 
-interface Book {
-  id: Key | null | undefined;
-  title: string;
-  author: string;
-  genre: string;
-  publicationYear: string;
-}
+export default function SingleFinishedListDetails({ finished }) {
+  const { id } = finished;
+  const { data, isLoading, isError } = useGetSingleBookQuery(id, {
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 10000,
+  });
 
-interface BookDetailsProps {
-  book: Book;
-}
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-const BookDetails: React.FC<BookDetailsProps> = ({ book }) => {
-  const { author, genre, publicationYear, title, _id } = book;
+  if (isError) {
+    return <div>Error occurred while fetching data</div>;
+  }
+
+  if (!data) {
+    return null;
+  }
+
+  const { genre, publicationYear, author, title, _id } = data;
+
   return (
     <Link to={`/singleBook/${_id}`}>
       <div className="card w-96 bg-base-100 shadow-xl">
@@ -33,6 +41,4 @@ const BookDetails: React.FC<BookDetailsProps> = ({ book }) => {
       </div>
     </Link>
   );
-};
-
-export default BookDetails;
+}

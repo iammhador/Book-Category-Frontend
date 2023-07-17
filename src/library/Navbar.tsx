@@ -84,14 +84,48 @@ export default function Navbar() {
               </>
             )}
             {user?.email && (
-              <li>
-                <button
-                  onClick={handleLogout}
-                  className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none uppercase"
-                >
-                  Logout
-                </button>
-              </li>
+              <>
+                <li>
+                  <Link
+                    to="/wishlist"
+                    className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none uppercase"
+                    aria-label="wishlist"
+                    title="wishlist"
+                  >
+                    Wishlist
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/reading"
+                    className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none uppercase"
+                    aria-label="Reading"
+                    title="Reading"
+                  >
+                    Reading
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/finished"
+                    className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none uppercase"
+                    aria-label="Finished"
+                    title="Finished"
+                  >
+                    Finished
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    onClick={handleLogout}
+                    className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none uppercase"
+                  >
+                    Logout
+                  </button>
+                </li>
+              </>
             )}
           </ul>
           <div className="lg:hidden">

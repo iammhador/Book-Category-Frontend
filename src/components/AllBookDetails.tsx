@@ -16,6 +16,7 @@ import {
   useReadingMutation,
   useWishlistMutation,
 } from "../redux/features/books/booksApi";
+import { toast } from "react-hot-toast";
 
 export default function AllBookDetails({ book }) {
   const { author, genre, publicationYear, title, _id } = book;
@@ -38,6 +39,7 @@ export default function AllBookDetails({ book }) {
       },
     };
     wishlistPost(option);
+    toast.success(`Your wishlist book is - ${title}`);
   };
 
   const toggleReading = () => {
@@ -50,6 +52,7 @@ export default function AllBookDetails({ book }) {
       },
     };
     readingPost(option);
+    toast.success(`You're reading - ${title}`);
   };
 
   const toggleFinished = () => {
@@ -62,6 +65,7 @@ export default function AllBookDetails({ book }) {
       },
     };
     finishedPost(option);
+    toast.success(`You have finished - ${title}`);
   };
 
   return (

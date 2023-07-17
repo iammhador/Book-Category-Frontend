@@ -112,7 +112,6 @@ export default function AllBooks() {
       (a, b) => b - a
     );
 
-  console.log(data);
   return (
     <div className="grid grid-cols-4">
       <div className="col-span-1 bg-gray-800 py-10 px-10">

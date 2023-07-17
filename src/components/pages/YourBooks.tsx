@@ -7,7 +7,6 @@ import YourBookDetails from "../YourBookDetails";
 
 export default function YourBooks() {
   const { user } = useAppSelector((state) => state.user);
-  console.log(user.email);
 
   const { data } = useGetEmailMatchedBooksQuery(user?.email, {
     refetchOnMountOrArgChange: true,
@@ -15,9 +14,9 @@ export default function YourBooks() {
   });
   return (
     <div className="min-h-screen">
-      <h1 className="text-3xl text-center font-bold text-orange-500 uppercase my-20 ">
+      <h2 className="text-3xl text-center font-bold text-orange-500 uppercase my-20 ">
         Your Books
-      </h1>
+      </h2>
       {user.email && (
         <div className="grid grid-cols-3 gap-5 w-4/5 mx-auto">
           {data?.length > 0 ? (

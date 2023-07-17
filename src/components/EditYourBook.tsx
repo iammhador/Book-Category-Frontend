@@ -9,8 +9,6 @@ export default function EditYourBook() {
   const { author, title, genre, publicationYear, _id } = loader;
 
   const [updateBook, { isSuccess, data }] = useUpdateMatchedBookMutation();
-  console.log(isSuccess);
-  console.log(data);
 
   const handleData = async (e: { preventDefault: () => void; target: any }) => {
     e.preventDefault();
