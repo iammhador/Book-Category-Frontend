@@ -28,6 +28,13 @@ const booksApi = api.injectEndpoints({
     }),
     postComments: builder.mutation({
       query: ({ data }) => ({
+        url: "/make-list",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    postList: builder.mutation({
+      query: ({ data }) => ({
         url: "/create-comment",
         method: "POST",
         body: data,
@@ -57,6 +64,7 @@ export const {
   useGetEmailMatchedBooksQuery,
   useCreateBookMutation,
   usePostCommentsMutation,
+  usePostListMutation,
   useUpdateMatchedBookMutation,
   useDeleteMatchedBookMutation,
 } = booksApi;

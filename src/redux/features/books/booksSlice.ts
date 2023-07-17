@@ -1,26 +1,34 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface IBook {
+  title: string;
+  author: string;
   genre: string;
   publicationYear: string;
 }
 
-const initialState: IBook = {
-  genre: "fiction",
-  publicationYear: "2023",
+interface BookStore {
+  books: IBook[];
+  searchFilter: string;
+}
+
+const initialState: BookStore = {
+  books: [],
+  searchFilter: "",
 };
+
 const booksSlice = createSlice({
   name: "books",
   initialState,
   reducers: {
-    toggleGenre: (state, { payload }: PayloadAction<string>) => {
-      state.genre = payload;
+    setBook: (state, { payload }: PayloadAction<IBook[]>) => {
+      state.books = payload;
     },
-    togglePublicationYear: (state, { payload }: PayloadAction<string>) => {
-      state.publicationYear = payload;
+    setSearchFilter: (state, { payload }: PayloadAction<string>) => {
+      state.searchFilter = payload;
     },
   },
 });
 
-export const { toggleGenre, togglePublicationYear } = booksSlice.actions;
+export const { setBook, setSearchFilter } = booksSlice.actions;
 export default booksSlice.reducer;
