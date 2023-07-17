@@ -28,7 +28,7 @@ const booksApi = api.injectEndpoints({
     }),
     postComments: builder.mutation({
       query: ({ data }) => ({
-        url: "/make-list",
+        url: "/create-comment",
         method: "POST",
         body: data,
       }),
@@ -37,6 +37,27 @@ const booksApi = api.injectEndpoints({
       query: ({ data }) => ({
         url: "/create-comment",
         method: "POST",
+        body: data,
+      }),
+    }),
+    wishlist: builder.mutation({
+      query: ({ data }) => ({
+        url: "/wishlist",
+        method: "PATCH",
+        body: data,
+      }),
+    }),
+    reading: builder.mutation({
+      query: ({ data }) => ({
+        url: "/reading",
+        method: "PATCH",
+        body: data,
+      }),
+    }),
+    finished: builder.mutation({
+      query: ({ data }) => ({
+        url: `/finished`,
+        method: "PATCH",
         body: data,
       }),
     }),
@@ -65,6 +86,9 @@ export const {
   useCreateBookMutation,
   usePostCommentsMutation,
   usePostListMutation,
+  useWishlistMutation,
+  useReadingMutation,
+  useFinishedMutation,
   useUpdateMatchedBookMutation,
   useDeleteMatchedBookMutation,
 } = booksApi;

@@ -45,6 +45,7 @@ export default function SingleBookDetails() {
       },
     };
     postComment(option);
+    e.target.reset();
   };
 
   return (

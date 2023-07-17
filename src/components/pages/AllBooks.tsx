@@ -116,12 +116,13 @@ export default function AllBooks() {
   return (
     <div className="grid grid-cols-4">
       <div className="col-span-1 bg-gray-800 py-10 px-10">
-        <div>
+        <div className="mb-3">
           <input
             type="text"
             value={searchFilter}
             onChange={handleSearchFilterChange}
             placeholder="Search..."
+            className="py-4 px-3 w-full rounded-lg"
           />
         </div>
         {user.email && (
