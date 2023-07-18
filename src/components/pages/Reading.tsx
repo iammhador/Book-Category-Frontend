@@ -5,6 +5,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable react-hooks/rules-of-hooks */
 
+import { Helmet } from "react-helmet-async";
 import { useGetReadingQuery } from "../../redux/features/books/booksApi";
 import { useAppSelector } from "../../redux/hooks";
 import SingleReadingListDetails from "../SingleReadingListDetails";
@@ -28,6 +29,9 @@ export default function Reading() {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Best Readers - Your Current Reading Books</title>
+      </Helmet>
       <h2 className="text-3xl text-center font-bold text-cyan-800 uppercase my-20 ">
         Your Reading List
       </h2>

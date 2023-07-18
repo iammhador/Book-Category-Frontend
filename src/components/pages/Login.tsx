@@ -8,6 +8,7 @@ import { setUser, userLogin } from "../../redux/features/users/usersSlice";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
 import { toast } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -31,6 +32,9 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center py-10  bg-gray-800">
+      <Helmet>
+        <title>Best Readers - Login</title>
+      </Helmet>
       <div className="flex flex-col content-center max-w-md p-6 rounded-md sm:p-10 bg-gray-900 text-gray-100">
         <div className="mb-8 text-center">
           <h1 className="my-3 text-4xl font-bold uppercase">Login</h1>

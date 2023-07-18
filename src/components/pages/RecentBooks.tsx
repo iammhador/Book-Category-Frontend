@@ -4,6 +4,7 @@
 import { Key } from "react";
 import { useRecentAddedBooksQuery } from "../../redux/features/books/booksApi";
 import BookDetails from "../BookDetails";
+import { Helmet } from "react-helmet-async";
 
 export default function RecentBooks() {
   const { data } = useRecentAddedBooksQuery(undefined, {
@@ -13,6 +14,9 @@ export default function RecentBooks() {
 
   return (
     <div className="bg-gray-800 py-10 px-10">
+      <Helmet>
+        <title>Best Readers - Books make us happy</title>
+      </Helmet>
       <h2 className="text-white text-center text-3xl font-bold uppercase mb-10">
         Latest Books
       </h2>

@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { toast } from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 import { useUpdateMatchedBookMutation } from "../redux/features/books/booksApi";
+import { Helmet } from "react-helmet-async";
 
 export default function EditYourBook() {
   const loader = useLoaderData();
@@ -38,6 +40,9 @@ export default function EditYourBook() {
 
   return (
     <div className="bg-gray-800  min-h-screen mx-auto py-10 px-10">
+      <Helmet>
+        <title>Best Readers - Edit Books</title>
+      </Helmet>
       <h3 className="text-white uppercase font-bold text-3xl mb-10 text-center">
         Edit your " {title} " books
       </h3>

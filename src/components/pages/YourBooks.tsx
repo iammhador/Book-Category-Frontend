@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
+import { Helmet } from "react-helmet-async";
 import { useGetEmailMatchedBooksQuery } from "../../redux/features/books/booksApi";
 import { useAppSelector } from "../../redux/hooks";
 import YourBookDetails from "../YourBookDetails";
@@ -14,6 +15,9 @@ export default function YourBooks() {
   });
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Best Readers - Your Book Collection</title>
+      </Helmet>
       <h2 className="text-3xl text-center font-bold text-orange-500 uppercase my-20 ">
         Your Books
       </h2>

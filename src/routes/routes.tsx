@@ -29,14 +29,18 @@ const router = createBrowserRouter([
         path: "/singleBook/:id",
         element: <SingleBookDetails />,
         loader: async ({ params }) => {
-          return fetch(`http://localhost:5000/singleBook/${params.id}`);
+          return fetch(
+            `https://best-readers-iammhador.vercel.app/singleBook/${params.id}`
+          );
         },
       },
       {
         path: "/edit-your-book/:id",
         element: <EditYourBook />,
         loader: async ({ params }) => {
-          return fetch(`http://localhost:5000/singleBook/${params.id}`);
+          return fetch(
+            `https://best-readers-iammhador.vercel.app/singleBook/${params.id}`
+          );
         },
       },
       { path: "/add-new-books", element: <AddNewBooks /> },

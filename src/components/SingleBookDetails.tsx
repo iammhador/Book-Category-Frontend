@@ -10,6 +10,7 @@ import {
 import { useAppSelector } from "../redux/hooks";
 import SingleComment from "./SingleComment";
 import { Key } from "react";
+import { Helmet } from "react-helmet-async";
 
 export default function SingleBookDetails() {
   interface IBook {
@@ -49,7 +50,10 @@ export default function SingleBookDetails() {
   };
 
   return (
-    <div className="bg-gray-800 min-h-screen py-20 px-20 ">
+    <div className="bg-gray-800 min-h-screen py-20 px-20">
+      <Helmet>
+        <title>Best Readers - Single Books Information</title>
+      </Helmet>
       <div className="bg-white w-4/12 mx-auto py-5 px-5 rounded-lg shadow-lg shadow-cyan-500">
         <div className="flex justify-between ">
           <p className="text-sm font-light bg-cyan-500 text-white py-1 px-2 rounded-md">

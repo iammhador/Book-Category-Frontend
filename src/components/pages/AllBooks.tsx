@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useGetBooksQuery } from "../../redux/features/books/booksApi";
 import { setSearchFilter } from "../../redux/features/books/booksSlice";
+import { Helmet } from "react-helmet-async";
 
 export default function AllBooks() {
   const { data } = useGetBooksQuery(undefined, {
@@ -114,6 +115,9 @@ export default function AllBooks() {
 
   return (
     <div className="grid grid-cols-4">
+      <Helmet>
+        <title>Best Readers - All Books</title>
+      </Helmet>
       <div className="col-span-1 bg-gray-800 py-10 px-10">
         <div className="mb-3">
           <input

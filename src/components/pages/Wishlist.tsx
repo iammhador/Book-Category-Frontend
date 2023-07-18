@@ -6,6 +6,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
+import { Helmet } from "react-helmet-async";
 import { useGetWishlistQuery } from "../../redux/features/books/booksApi";
 import { useAppSelector } from "../../redux/hooks";
 import SingleWishlistDetails from "../SingleWishlistDetails";
@@ -29,6 +30,9 @@ export default function wishlist() {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Best Readers - Your Wishlist Books</title>
+      </Helmet>
       <h2 className="text-3xl text-center font-bold text-cyan-800 uppercase my-20 ">
         Your Wishlist
       </h2>

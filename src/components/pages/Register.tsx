@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { createUser } from "../../redux/features/users/usersSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import { toast } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 export default function Register() {
   const dispatch = useAppDispatch();
@@ -23,6 +24,9 @@ export default function Register() {
   };
   return (
     <div className="min-h-screen flex flex-col justify-center items-center py-10  bg-gray-800">
+      <Helmet>
+        <title>Best Readers - Register</title>
+      </Helmet>
       <div className="flex flex-col content-center max-w-md p-6 rounded-md sm:p-10 bg-gray-900 text-gray-100">
         <div className="mb-8 text-center">
           <h1 className="my-3 text-4xl font-bold uppercase">Register</h1>

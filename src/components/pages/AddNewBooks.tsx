@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useCreateBookMutation } from "../../redux/features/books/booksApi";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { toast } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 export default function AddNewBooks() {
@@ -38,6 +39,9 @@ export default function AddNewBooks() {
   };
   return (
     <div className="bg-gray-800  min-h-screen mx-auto py-10 px-10">
+      <Helmet>
+        <title>Best Readers - Add New Books</title>
+      </Helmet>
       <h3 className="text-white uppercase font-bold text-3xl mb-10 text-center">
         Add new books
       </h3>

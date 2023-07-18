@@ -6,6 +6,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
+import { Helmet } from "react-helmet-async";
 import { useGetFinishedQuery } from "../../redux/features/books/booksApi";
 import { useAppSelector } from "../../redux/hooks";
 import SingleFinishedListDetails from "../SingleFinishedListDetails";
@@ -28,6 +29,9 @@ export default function Finished() {
   }
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Best Readers - Your Finished Book List</title>
+      </Helmet>
       <h2 className="text-3xl text-center font-bold text-cyan-800 uppercase my-20 ">
         Your Finished Book List
       </h2>
