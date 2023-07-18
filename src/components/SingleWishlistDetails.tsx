@@ -4,7 +4,17 @@
 import { Link } from "react-router-dom";
 import { useGetSingleBookQuery } from "../redux/features/books/booksApi";
 
-export default function SingleWishlistDetails({ wishlist }) {
+interface IWishlist {
+  id: string;
+  email: string;
+  wishlist: boolean;
+}
+
+export default function SingleWishlistDetails({
+  wishlist,
+}: {
+  wishlist: IWishlist;
+}) {
   const { id } = wishlist;
   const { data, isLoading, isError } = useGetSingleBookQuery(id, {
     refetchOnMountOrArgChange: true,

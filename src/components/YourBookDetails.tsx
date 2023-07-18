@@ -7,7 +7,17 @@ import { useDeleteMatchedBookMutation } from "../redux/features/books/booksApi";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 
-export default function YourBookDetails({ book }) {
+interface IBook {
+  author: string;
+  title: string;
+  genre: string;
+  publicationYear: string;
+  _id: string;
+}
+interface IYourBookDetailsProps {
+  book: IBook;
+}
+export default function YourBookDetails({ book }: IYourBookDetailsProps) {
   const { author, title, genre, publicationYear, _id } = book;
 
   const [deleteBook] = useDeleteMatchedBookMutation();

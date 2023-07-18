@@ -6,6 +6,14 @@ import { useRecentAddedBooksQuery } from "../../redux/features/books/booksApi";
 import BookDetails from "../BookDetails";
 import { Helmet } from "react-helmet-async";
 
+interface Book {
+  _id: string;
+  id: Key | null | undefined;
+  author: string;
+  title: string;
+  genre: string;
+  publicationYear: string;
+}
 export default function RecentBooks() {
   const { data } = useRecentAddedBooksQuery(undefined, {
     refetchOnMountOrArgChange: true,
@@ -21,7 +29,7 @@ export default function RecentBooks() {
         Latest Books
       </h2>
       <div className="grid grid-cols-3 items-center justify-items-center gap-8">
-        {data?.map((book: { id: Key | null | undefined }, index: number) => (
+        {data?.map((book: Book, index: number) => (
           <BookDetails key={index} book={book} />
         ))}
       </div>

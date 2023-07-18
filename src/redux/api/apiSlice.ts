@@ -4,6 +4,6 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://best-readers-iammhador.vercel.app/",
   }),
-  tagTypes: ["books", "users"],
+  tagTypes: ["comments", "books", "wishlist", "reading", "finished"],
   endpoints: () => ({}),
 });

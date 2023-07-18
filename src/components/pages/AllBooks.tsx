@@ -12,6 +12,18 @@ import { useGetBooksQuery } from "../../redux/features/books/booksApi";
 import { setSearchFilter } from "../../redux/features/books/booksSlice";
 import { Helmet } from "react-helmet-async";
 
+interface Book {
+  _id: string;
+  author: string;
+  title: string;
+  genre: string;
+  publicationYear: string;
+}
+
+interface BookData {
+  publicationYear: string;
+}
+
 export default function AllBooks() {
   const { data } = useGetBooksQuery(undefined, {
     refetchOnMountOrArgChange: true,
@@ -32,7 +44,7 @@ export default function AllBooks() {
     setIsFilteringYear((prevState) => !prevState);
   };
 
-  let booksData = data || [];
+  let booksData: Book[] = data || [];
 
   //@ Search filters code :
   const searchFilter = useAppSelector((state) => state.books.searchFilter);
@@ -44,7 +56,7 @@ export default function AllBooks() {
 
   //@ Apply the search filter
   if (searchFilter) {
-    booksData = booksData.filter((book: any) => {
+    booksData = booksData.filter((book: Book) => {
       const titleMatches = book.title
         .toLowerCase()
         .includes(searchFilter.toLowerCase());
@@ -65,8 +77,8 @@ export default function AllBooks() {
   }
 
   //@ Sorting logic
-  let sortedBooksData = [...booksData];
-  sortedBooksData.sort((a: any, b: any) => {
+  let sortedBooksData: Book[] = [...booksData];
+  sortedBooksData.sort((a: Book, b: Book) => {
     if (a.title < b.title) {
       return -1;
     }
@@ -78,7 +90,7 @@ export default function AllBooks() {
 
   //@ Apply the genre filter if enabled
   if (isFilteringGenre) {
-    sortedBooksData = sortedBooksData.filter((item: any) => {
+    sortedBooksData = sortedBooksData.filter((item: Book) => {
       if (genre && item.genre !== genre) {
         return false;
       }
@@ -91,11 +103,11 @@ export default function AllBooks() {
   };
 
   const uniqueGenres =
-    data && Array.from(new Set(data.map((item: any) => item.genre))).sort();
+    data && Array.from(new Set(data.map((item: Book) => item.genre))).sort();
 
   //@ Apply the publication year filter if enabled
   if (isFilteringYear) {
-    sortedBooksData = sortedBooksData.filter((item: any) => {
+    sortedBooksData = sortedBooksData.filter((item: Book) => {
       if (publicationYear && item.publicationYear !== publicationYear) {
         return false;
       }
@@ -109,9 +121,11 @@ export default function AllBooks() {
 
   const uniqueYear =
     data &&
-    Array.from(new Set(data.map((item: any) => item.publicationYear))).sort(
-      (a, b) => b - a
-    );
+    Array.from(
+      new Set(data.map((item: BookData) => item.publicationYear))
+    ).sort((a: any, b: any) => {
+      return Number(b) - Number(a);
+    });
 
   return (
     <div className="grid grid-cols-4">
@@ -132,13 +146,13 @@ export default function AllBooks() {
           <div>
             <Link
               to="/add-new-books"
-              className="text-gray-800 py-4 px-5 bg-white uppercase font-bold text-base  rounded-lg hover:bg-red-500 hover:text-white transition duration-300 ease-in-out justify-center items-center flex mb-5"
+              className="text-gray-800 py-4 px-5 bg-white uppercase font-bold text-base rounded-lg hover:bg-red-500 hover:text-white transition duration-300 ease-in-out justify-center items-center flex mb-5"
             >
               Add new books
             </Link>
             <Link
               to="/your-added-books"
-              className="text-gray-800 py-4 px-5 bg-white uppercase font-bold text-base  rounded-lg hover:bg-red-500 hover:text-white transition duration-300 ease-in-out justify-center items-center flex"
+              className="text-gray-800 py-4 px-5 bg-white uppercase font-bold text-base rounded-lg hover:bg-red-500 hover:text-white transition duration-300 ease-in-out justify-center items-center flex"
             >
               Your added books
             </Link>
@@ -159,7 +173,7 @@ export default function AllBooks() {
               className="text-gray-800 py-2 px-3 bg-white uppercase font-bold text-base rounded-lg hover:bg-red-500 hover:text-white transition duration-300 ease-in-out"
             >
               <option value="All">All Genres</option>
-              {[...uniqueGenres].map((uniqueGenre: any, index: any) => (
+              {[...uniqueGenres].map((uniqueGenre: string, index: number) => (
                 <option key={index} value={uniqueGenre}>
                   {uniqueGenre}
                 </option>
@@ -180,7 +194,7 @@ export default function AllBooks() {
               className="text-gray-800 py-2 px-3 bg-white uppercase font-bold text-base rounded-lg hover:bg-red-500 hover:text-white transition duration-300 ease-in-out"
             >
               <option value="">All Years</option>
-              {[...uniqueYear].map((uniqueYear: any, index: any) => (
+              {[...uniqueYear].map((uniqueYear: string, index: number) => (
                 <option key={index} value={uniqueYear}>
                   {uniqueYear}
                 </option>
@@ -196,7 +210,7 @@ export default function AllBooks() {
           </h2>
 
           <div className="grid grid-cols-2 items-center justify-items-center gap-8">
-            {sortedBooksData.map((book: any, index: number) => (
+            {sortedBooksData.map((book: Book, index: number) => (
               <AllBookDetails key={index} book={book} />
             ))}
           </div>

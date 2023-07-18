@@ -24,6 +24,7 @@ export default function SingleBookDetails() {
   const [postComment] = usePostCommentsMutation();
 
   const { user } = useAppSelector((state) => state.user);
+  console.log(user);
 
   const bookData = useLoaderData();
 
@@ -69,24 +70,26 @@ export default function SingleBookDetails() {
         <h4 className="text-center text-sm font-thin">{author}</h4>
       </div>
 
-      <div className="bg-gray-900 w-2/3 mt-10 mx-auto py-5 px-5 rounded-lg shadow-xl shadow-red-500 border border-red-500">
-        <form onSubmit={handleComment}>
-          <input
-            type="text"
-            name="comment"
-            className="w-full bg-gray-200 rounded-lg p-2"
-          />
+      {user?.email && (
+        <div className="bg-gray-900 w-2/3 mt-10 mx-auto py-5 px-5 rounded-lg shadow-xl shadow-red-500 border border-red-500">
+          <form onSubmit={handleComment}>
+            <input
+              type="text"
+              name="comment"
+              className="w-full bg-gray-200 rounded-lg p-2"
+            />
 
-          <div className="flex justify-end">
-            <button
-              type="submit"
-              className="py-2 px-6 text-white bg-red-500 hover:border-red-500 mt-3 rounded-lg uppercase"
-            >
-              Comment
-            </button>
-          </div>
-        </form>
-      </div>
+            <div className="flex justify-end">
+              <button
+                type="submit"
+                className="py-2 px-6 text-white bg-red-500 hover:border-red-500 mt-3 rounded-lg uppercase"
+              >
+                Comment
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
       {user?.email && (
         <div className="mt-20 py-10 bg-white rounded-lg">
           {commentData &&
@@ -95,7 +98,7 @@ export default function SingleBookDetails() {
                 _id: Key | null | undefined;
                 comment: string;
                 timestamp: string;
-              }) => <SingleComment key={comment._id} data={comment} />
+              }) => <SingleComment key={comment._id} commentDatas={comment} />
             )}
         </div>
       )}

@@ -9,6 +9,7 @@ interface Book {
   author: string;
   genre: string;
   publicationYear: string;
+  _id: string;
 }
 
 interface BookDetailsProps {

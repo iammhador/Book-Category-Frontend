@@ -6,12 +6,15 @@ const booksApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getBooks: builder.query({
       query: () => "/all-books",
+      providesTags: ["books"],
     }),
     recentAddedBooks: builder.query({
       query: () => "/recent-books",
+      providesTags: ["books"],
     }),
     getComments: builder.query({
       query: (id) => `/comments/${id}`,
+      providesTags: ["comments"],
     }),
     getSingleBook: builder.query({
       query: (id) => `/singleBook/${id}`,
@@ -21,12 +24,15 @@ const booksApi = api.injectEndpoints({
     }),
     getWishlist: builder.query({
       query: (email) => `/wishlist/${email}`,
+      providesTags: ["wishlist"],
     }),
     getReading: builder.query({
       query: (email) => `/reading/${email}`,
+      providesTags: ["reading"],
     }),
     getFinished: builder.query({
       query: (email) => `/finished/${email}`,
+      providesTags: ["finished"],
     }),
     createBook: builder.mutation({
       query: ({ data }) => ({
@@ -34,6 +40,7 @@ const booksApi = api.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["books"],
     }),
     postComments: builder.mutation({
       query: ({ data }) => ({
@@ -41,13 +48,7 @@ const booksApi = api.injectEndpoints({
         method: "POST",
         body: data,
       }),
-    }),
-    postList: builder.mutation({
-      query: ({ data }) => ({
-        url: "/create-comment",
-        method: "POST",
-        body: data,
-      }),
+      invalidatesTags: ["comments"],
     }),
     wishlist: builder.mutation({
       query: ({ data }) => ({
@@ -55,6 +56,7 @@ const booksApi = api.injectEndpoints({
         method: "PATCH",
         body: data,
       }),
+      invalidatesTags: ["wishlist"],
     }),
     reading: builder.mutation({
       query: ({ data }) => ({
@@ -62,6 +64,7 @@ const booksApi = api.injectEndpoints({
         method: "PATCH",
         body: data,
       }),
+      invalidatesTags: ["reading"],
     }),
     finished: builder.mutation({
       query: ({ data }) => ({
@@ -69,6 +72,7 @@ const booksApi = api.injectEndpoints({
         method: "PATCH",
         body: data,
       }),
+      invalidatesTags: ["finished"],
     }),
     updateMatchedBook: builder.mutation({
       query: ({ _id, ...data }) => ({
@@ -97,7 +101,6 @@ export const {
   useGetFinishedQuery,
   useCreateBookMutation,
   usePostCommentsMutation,
-  usePostListMutation,
   useWishlistMutation,
   useReadingMutation,
   useFinishedMutation,

@@ -17,8 +17,14 @@ import {
   useWishlistMutation,
 } from "../redux/features/books/booksApi";
 import { toast } from "react-hot-toast";
-
-export default function AllBookDetails({ book }) {
+interface IBook {
+  author: string;
+  genre: string;
+  publicationYear: string;
+  title: string;
+  _id: string;
+}
+export default function AllBookDetails({ book }: { book: IBook }) {
   const { author, genre, publicationYear, title, _id } = book;
   const { user } = useAppSelector((state) => state.user);
   const [wishlist, setWishlist] = useState(false);

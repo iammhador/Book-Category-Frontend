@@ -6,11 +6,19 @@ import { useLoaderData } from "react-router-dom";
 import { useUpdateMatchedBookMutation } from "../redux/features/books/booksApi";
 import { Helmet } from "react-helmet-async";
 
+interface Book {
+  author: string;
+  title: string;
+  genre: string;
+  publicationYear: string;
+  _id: string;
+}
+
 export default function EditYourBook() {
-  const loader = useLoaderData();
+  const loader = useLoaderData() as Book;
   const { author, title, genre, publicationYear, _id } = loader;
 
-  const [updateBook, { isSuccess, data }] = useUpdateMatchedBookMutation();
+  const [updateBook, { isSuccess }] = useUpdateMatchedBookMutation();
 
   const handleData = async (e: { preventDefault: () => void; target: any }) => {
     e.preventDefault();

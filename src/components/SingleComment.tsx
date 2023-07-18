@@ -1,6 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-export default function SingleComment({ data }) {
-  const { comment, email } = data;
+interface CommentData {
+  email?: string;
+  comment: string;
+}
+
+export default function SingleComment({
+  commentDatas,
+}: {
+  commentDatas: CommentData;
+}) {
+  const { email, comment } = commentDatas;
 
   return (
     <div className="bg-red-500 w-4/5  mx-auto mb-5 py-5 px-5 rounded-lg shadow-xl ">

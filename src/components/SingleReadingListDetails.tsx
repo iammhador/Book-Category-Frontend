@@ -4,7 +4,17 @@
 import { Link } from "react-router-dom";
 import { useGetSingleBookQuery } from "../redux/features/books/booksApi";
 
-export default function SingleReadingListDetails({ reading }) {
+interface IReadingList {
+  id: string;
+  email: string;
+  wishlist: boolean;
+}
+
+export default function SingleReadingListDetails({
+  reading,
+}: {
+  reading: IReadingList;
+}) {
   const { id } = reading;
   const { data, isLoading, isError } = useGetSingleBookQuery(id, {
     refetchOnMountOrArgChange: true,

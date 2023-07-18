@@ -1,6 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
-import { useAppSelector } from "../../hooks";
 
 const selectBooks = (state: RootState) => state.books.books;
 const selectSearchFilter = (state: RootState) => state.books.searchFilter;
